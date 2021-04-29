@@ -1,27 +1,38 @@
+import java.util.*;
+
 class Stack {
-	int [] values;
-	int free;
+  // atributos que cada instancia vai ter
+  private int [] values;
+  private int free;
 
-	Stack() {
-    values = new int[100];
-		free = 0;
-	}
+  /*
+   * construtor na realidade devolve um ENDERECO.
+   * por isso nao tem tipo de retorno (nem void)
+   */
+  public Stack() {
+    // analogo ao um malloc em C
+    values = new int[100]; 
+    free = 0;
+  }
 
-	// nao precisamos passar a PILHA por parametro,
-	// uma vez que estamos dentro do objeto PILHA então está implícito que o método tem acesso a ele.
-	void push(int value) {
-		values[free] = value;
-		free++;
-	}
-	
-	int pop() {
-		free--;
-		return values[free];
-	}
-	
-	int empty() {
-		return free == 0;
-	}
+  /*
+   * nao precisamos passar a PILHA por parametro,
+   * uma vez que estamos dentro do objeto PILHA 
+   * entao esta implicito que o metodo tem acesso a ele.
+   */
+  public void push(int value) {
+    values[free] = value;
+    free++;
+  }
+
+  public int pop() {
+    free--;
+    return values[free];
+  }
+
+  public boolean empty() {
+    return free == 0;
+  }
 }
 
 /*
@@ -30,19 +41,19 @@ class Stack {
  * inversa à ordem de leitura.
  */
 public class Ex4 {
-	public static void main(String [] args) {
-		Stack stack = new Stack(); 
-		int value;
-		
-		while (/* value = ... */ && value > 0) {
-			stack.push(value);
-		}
-		
-		printf("Conteudo em ordem inversa");
-		
-		while (!stack.empty()) {
-			value = stack.pop();
-			printf(" %d", value);
-		}
-	}
+  public static void main(String [] args) {
+    Stack stack = new Stack(); 
+    int value;
+
+    while (/* value = ... */ && value > 0) {
+      stack.push(value);
+    }
+
+    printf("Conteudo em ordem inversa");
+    
+    while (!stack.empty()) {
+      value = stack.pop();
+      printf(" %d", value);
+    }
+  }
 }
