@@ -49,11 +49,11 @@ public class Ex4 {
       stack.push(value);
     }
 
-    printf("Conteudo em ordem inversa");
+    System.out.println("Conteudo em ordem inversa");
     
     while (!stack.empty()) {
       value = stack.pop();
-      printf(" %d", value);
+      System.out.println(" %d", value);
     }
   }
 }
