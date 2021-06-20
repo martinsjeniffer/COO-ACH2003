@@ -9,7 +9,6 @@ public class Player {
 
 	/**
 		Construtor da classe Player.
-
 		@param cx coordenada x da posição inicial do player (centro do retangulo que o representa).
 		@param cy coordenada y da posição inicial do player (centro do retangulo que o representa).
 		@param width largura do retangulo que representa o player.
@@ -19,9 +18,25 @@ public class Player {
 		@param v_limit um array de double contendo dois valores (em pixels) que determinam os limites verticais da área útil da quadra.   
 		@param speed velocidade do movimento vertical do player (em pixels por millisegundo).
 	*/
+		double cx;
+		double cy;
+		double width;
+		double height;
+		Color color;
+		String id;
+		double[] v_limit = new double[2];
+		double speed;
+	
 
 	public Player(double cx, double cy, double width, double height, Color color, String id, double [] v_limit, double speed){
-	
+		this.cx = cx;
+		this.cy = cy;
+		this.width = width;
+		this.height = height;
+		this.color = color;
+		this.id = id;
+		this.v_limit = v_limit;
+		this.speed = speed;
 	}
 
 	/**
@@ -29,33 +44,35 @@ public class Player {
 	*/
 
 	public void draw(){
-
-		GameLib.setColor(Color.GREEN);
-		GameLib.fillRect(80, 300, 20, 100);
+		GameLib.setColor(color);
+		// os parametros abaixo são posição inicial do player em x e y e as suas respectivas largura e altura
+		GameLib.fillRect(cx, cy, width, height); // nros que estavam antes 80, 300, 20, 100
 	}
 
 	/**
 		Método chamado quando se deseja mover o player para cima. 
 		Este método é chamado sempre que a tecla associada à ação 
 		de mover o player para cima estiver pressionada.
-
 		@param delta quantidade de millisegundos que se passou entre o ciclo anterior de atualização do jogo e o atual.
 	*/
 
 	public void moveUp(long delta){
-
+		if(!(cy + this.getHeight()/2.0 <= 221)){
+			cy = cy - delta;
+		}
 	}
 
 	/**
 		Método chamado quando se deseja mover o player para baixo. 
 		Este método é chamado sempre que a tecla associada à ação 
 		de mover o player para baixo estiver pressionada.
-
 		@param delta quantidade de millisegundos que se passou entre o ciclo anterior de atualização do jogo e o atual.
 	*/
 
 	public void moveDown(long delta){
-
+		if(!(cy + this.getHeight()/2.0 >= 579)){
+			cy += delta;
+		}
 	}
 
 	/**
@@ -64,8 +81,7 @@ public class Player {
 	*/
 
 	public String getId() { 
-
-		return ""; 
+		return this.id; 
 	}
 
 	/**
@@ -73,9 +89,8 @@ public class Player {
 		@return um double com o valor da largura.
 	*/
 
-	public double getWidth() { 
-
-		return 20; 
+	public double getWidth() {
+		return this.width; 
 	}
 
 	/**
@@ -83,9 +98,8 @@ public class Player {
 		@return um double com o valor da altura.
 	*/
 
-	public double getHeight() { 
-
-		return 100;
+	public double getHeight() {
+		return this.height;
 	}
 
 	/**
@@ -93,9 +107,8 @@ public class Player {
 		@return o valor double da coordenada x.
 	*/
 
-	public double getCx() { 
-		
-		return 80;
+	public double getCx() {
+		return this.cx;
 	}
 
 	/**
@@ -103,9 +116,7 @@ public class Player {
 		@return o valor double da coordenada y.
 	*/
 
-	public double getCy() { 
-	
-		return 300;
+	public double getCy() {
+		return this.cy;
 	}
 }
-

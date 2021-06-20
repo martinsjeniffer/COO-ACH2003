@@ -13,9 +13,12 @@ public class Score {
 
 		@param playerId uma string que identifica o player ao qual este placar está associado.
 	*/
+	String playerId;
+	int score;
 
 	public Score(String playerId){
-
+		this.score = 0;
+		this.playerId = playerId;
 	}
 
 	/**
@@ -23,8 +26,14 @@ public class Score {
 	*/
 
 	public void draw(){
-
-		GameLib.drawText("placar?", 70, GameLib.ALIGN_LEFT);			
+		if (this.playerId.equalsIgnoreCase("Player 1")){
+			GameLib.setColor(Color.GREEN);
+			GameLib.drawText(playerId + ": " + this.score, 70, GameLib.ALIGN_LEFT);
+		}
+		else {
+			GameLib.setColor(Color.BLUE);
+			GameLib.drawText(playerId + ": " + this.score, 70, GameLib.ALIGN_RIGHT);
+		}
 	}
 
 	/**
@@ -32,8 +41,9 @@ public class Score {
 	*/
 
 	public void inc(){
-
+		this.score++;
 	}
+		
 
 	/**
 		Método que devolve a contagem de pontos mantida pelo placar.
@@ -42,7 +52,6 @@ public class Score {
 	*/
 
 	public int getScore(){
-
-		return 0;
+		return this.score;
 	}
 }
