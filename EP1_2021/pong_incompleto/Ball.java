@@ -110,35 +110,23 @@ public class Ball {
   public boolean checkCollision(Wall wall) {
     String wallId = wall.getId();
 
-    if (wallId.equals("Top")) {
-      double ballTop = this.cy - (this.height / 2);
-      double wallBottom = wall.getCy() + (wall.getHeight() / 2);
+    double ballTop = this.cy - (this.height / 2);
+    double ballBottom = this.cy + (this.height / 2);
+    double ballLeft = this.cx - (this.height / 2);
+    double ballRight = this.cx + (this.width / 2);
+  
+    double wallTop = wall.getCy() - (wall.getHeight() / 2);
+    double wallBottom = wall.getCy() + (wall.getHeight() / 2);
+    double wallLeft = wall.getCx() - (wall.getWidth() / 2);
+    double wallRight = wall.getCx() + (wall.getWidth() / 2);
 
-      if (ballTop <= wallBottom) {
-        return true;
-      }
-    } else if (wallId.equals("Bottom")) {
-      double ballBottom = this.cy + (this.height / 2);
-      double wallTop = wall.getCy() - (wall.getHeight() / 2);
+    if (wallId.equals("Top") && ballTop <= wallBottom) return true;
+    
+    if (wallId.equals("Bottom") && ballBottom >= wallTop) return true;
 
-      if (ballBottom >= wallTop) {
-        return true;
-      }
-    } else if (wallId.equals("Left")) {
-      double ballLeft = this.cx - (this.height / 2);
-      double wallRight = wall.getCx() + (wall.getWidth() / 2);
-
-      if (ballLeft <= wallRight) {
-        return true;
-      }
-    } else if (wallId.equals("Right")) {
-      double ballRight = this.cx + (this.width / 2);
-      double wallLeft = wall.getCx() - (wall.getWidth() / 2);
-
-      if (ballRight >= wallLeft) {
-        return true;
-      }
-    }
+    if (wallId.equals("Left") && ballLeft <= wallRight) return true;
+      
+    if (wallId.equals("Right") && ballRight >= wallLeft) return true;
 
     return false;
   }
@@ -152,14 +140,12 @@ public class Ball {
   public boolean checkCollision(Player player) {
     double ballTop = this.cy - (this.height / 2);
     double ballBottom = this.cy + (this.height / 2);
-
     double ballLeft = this.cx - (this.width / 2);
     double ballRight = this.cx + (this.width / 2);
 
     // hitbox do player
     double playerTop = player.getCy() - (player.getHeight() / 2);
     double playerBottom = player.getCy() + (player.getHeight() / 2);
-
     double playerLeft = player.getCx() - (player.getWidth() / 2);
     double playerRight = player.getCx() + (player.getWidth() / 2);
 
