@@ -77,11 +77,7 @@ public class Ball {
 	*/
 
   public void onPlayerCollision(String playerId) {
-    if (playerId.equals("Player 1")) {
-      this.directionX = Math.abs(this.speed);
-    } else {
-      this.directionX = -Math.abs(this.speed);
-    }
+    this.directionX = playerId.equals("Player 1") ? Math.abs(this.speed) : - Math.abs(this.speed);
   }
 
   /**
@@ -165,7 +161,7 @@ public class Ball {
 	*/
 
   public double getCx() {
-    return cx;
+    return this.cx;
   }
 
   /**
@@ -174,7 +170,7 @@ public class Ball {
 	*/
 
   public double getCy() {
-    return cy;
+    return this.cy;
   }
 
   /**
@@ -183,6 +179,6 @@ public class Ball {
 	*/
 
   public double getSpeed() {
-    return speed;
+    return this.speed;
   }
 }
