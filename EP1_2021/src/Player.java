@@ -53,8 +53,7 @@ public class Player {
 
   public void draw() {
     GameLib.setColor(color);
-    // os parametros abaixo são posição inicial do player em x e y e as suas respectivas largura e altura
-    GameLib.fillRect(cx, cy, width, height); // nros que estavam antes 80, 300, 20, 100
+    GameLib.fillRect(cx, cy, width, height);
   }
 
   /**
@@ -65,8 +64,10 @@ public class Player {
 	*/
 
   public void moveUp(long delta) {
-    if (!(cy + this.getHeight() / 2.0 <= 221)) {
-      cy = cy - delta;
+    if ((this.cy - (this.getHeight() / 2)) > v_limit[0]) {
+      this.cy -= delta;
+    } else {
+      this.cy = this.v_limit[0] + (this.height / 2);
     }
   }
 
@@ -78,8 +79,10 @@ public class Player {
 	*/
 
   public void moveDown(long delta) {
-    if (!(cy + this.getHeight() / 2.0 >= 579)) {
-      cy += delta;
+    if (this.cy + (this.getHeight() / 2) < v_limit[1]) {
+      this.cy += delta;
+    } else {
+      this.cy = this.v_limit[1] - (this.height / 2);
     }
   }
 
