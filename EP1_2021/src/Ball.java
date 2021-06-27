@@ -10,11 +10,12 @@ public class Ball {
   private double cy;
   private double width;
   private double height;
+  private double centerHeight;
+  private double centerWidth;
   private Color color;
   private double speed;
   private double directionX;
   private double directionY;
-  private Player playerColisao;
 
   /**
     Construtor da classe Ball. Observe que quem invoca o construtor desta classe define a velocidade da bola 
@@ -41,10 +42,12 @@ public class Ball {
     this.cy = cy;
     this.width = width;
     this.height = height;
+    this.centerHeight = height / 2;
+    this.centerWidth = width / 2;
     this.color = color;
     this.speed = speed;
-    this.directionX = (this.speed);
-    this.directionY = (this.speed);
+    this.directionX = speed;
+    this.directionY = speed;
   }
 
   /**
@@ -86,15 +89,41 @@ public class Ball {
 	*/
 
   public void onWallCollision(String wallId) {
-    if (wallId.equals("Top")) {
-      this.directionY = Math.abs(this.speed);
-    } else if (wallId.equals("Bottom")) {
-      this.directionY = -Math.abs(this.speed);
-    } else if (wallId.equals("Left")) {
-      this.directionX = Math.abs(this.speed);
-    } else if (wallId.equals("Right")) {
-      this.directionX = -Math.abs(this.speed);
-    }
+    if (wallId.equals("Top")) this.directionY = Math.abs(this.speed);
+
+    if (wallId.equals("Bottom")) this.directionY = - Math.abs(this.speed);
+
+    if (wallId.equals("Left")) this.directionX = Math.abs(this.speed);
+
+    if (wallId.equals("Right")) this.directionX = - Math.abs(this.speed);
+  }
+
+  private boolean ballHitsTop(Wall wall) {
+    double wallBottom = wall.getCy() + (wall.getHeight() / 2);
+    double ballTop = this.cy - this.centerHeight;
+
+    return ballTop <= wallBottom;
+  }
+
+  private boolean ballHitsBottom(Wall wall) {
+    double wallTop = wall.getCy() - (wall.getHeight() / 2);
+    double ballBottom = this.cy + this.centerHeight;
+
+    return ballBottom >= wallTop;
+  }
+
+  private boolean ballHitsLeft(Wall wall) {
+    double wallRight = wall.getCx() + (wall.getWidth() / 2);
+    double ballLeft = this.cx - this.centerWidth;
+
+    return ballLeft <= wallRight;
+  }
+
+  private boolean ballHitsRight(Wall wall) {
+    double wallLeft = wall.getCx() - (wall.getWidth() / 2);
+    double ballRight = this.cx + this.centerWidth;
+
+    return ballRight >= wallLeft;
   }
 
   /**
@@ -106,23 +135,13 @@ public class Ball {
   public boolean checkCollision(Wall wall) {
     String wallId = wall.getId();
 
-    double ballTop = this.cy - (this.height / 2);
-    double ballBottom = this.cy + (this.height / 2);
-    double ballLeft = this.cx - (this.height / 2);
-    double ballRight = this.cx + (this.width / 2);
-  
-    double wallTop = wall.getCy() - (wall.getHeight() / 2);
-    double wallBottom = wall.getCy() + (wall.getHeight() / 2);
-    double wallLeft = wall.getCx() - (wall.getWidth() / 2);
-    double wallRight = wall.getCx() + (wall.getWidth() / 2);
+    if (wallId.equals("Top")) return ballHitsTop(wall);
 
-    if (wallId.equals("Top") && ballTop <= wallBottom) return true;
-    
-    if (wallId.equals("Bottom") && ballBottom >= wallTop) return true;
+    if (wallId.equals("Bottom")) return ballHitsBottom(wall);
 
-    if (wallId.equals("Left") && ballLeft <= wallRight) return true;
-      
-    if (wallId.equals("Right") && ballRight >= wallLeft) return true;
+    if (wallId.equals("Left")) return ballHitsLeft(wall);
+
+    if (wallId.equals("Right")) return ballHitsRight(wall);
 
     return false;
   }
@@ -134,25 +153,24 @@ public class Ball {
 	*/
 
   public boolean checkCollision(Player player) {
-    double ballTop = this.cy - (this.height / 2);
-    double ballBottom = this.cy + (this.height / 2);
-    double ballLeft = this.cx - (this.width / 2);
-    double ballRight = this.cx + (this.width / 2);
+    double ballTop    = this.cy - this.centerHeight;
+    double ballBottom = this.cy + this.centerHeight;
+    double ballLeft   = this.cx - this.centerWidth;
+    double ballRight  = this.cx + this.centerWidth;
 
-    // hitbox do player
-    double playerTop = player.getCy() - (player.getHeight() / 2);
+    double playerTop    = player.getCy() - (player.getHeight() / 2);
     double playerBottom = player.getCy() + (player.getHeight() / 2);
-    double playerLeft = player.getCx() - (player.getWidth() / 2);
-    double playerRight = player.getCx() + (player.getWidth() / 2);
+    double playerLeft   = player.getCx() - (player.getWidth() / 2);
+    double playerRight  = player.getCx() + (player.getWidth() / 2);
 
-    // colisoes
-    boolean rightColision = ballLeft <= playerRight;
-    boolean leftColision = ballRight >= playerLeft;
+    boolean colisionRight  = ballLeft <= playerRight;
+    boolean colisionLeft   = ballRight >= playerLeft;
+    boolean colisionTop    = ballBottom >= playerTop;
+    boolean colisionBottom = ballTop <= playerBottom;
 
-    boolean isBallBetweenPlayerTopAndBottom =
-      ballBottom >= playerTop && ballTop <= playerBottom;
+    boolean ballBetweenPlayerTopAndBottom = colisionTop && colisionBottom;
 
-    return rightColision && leftColision && isBallBetweenPlayerTopAndBottom;
+    return colisionRight && colisionLeft && ballBetweenPlayerTopAndBottom;
   }
 
   /**
