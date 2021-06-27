@@ -1,0 +1,13 @@
+EP1 - PONG!
+Jeniffer Florinda Martins da Silva
+NUSP: 10377966
+
+Este exercício programa foi feito em Java
+
+java -version:
+
+openjdk version "1.8.0_272"
+OpenJDK Runtime Environment (build 1.8.0_272-8u272-b10-0+deb9u1-b10)
+OpenJDK 64-Bit Server VM (build 25.272-b10, mixed mode)
+
+E pode ser compilado e executado com GNU Make, rotando 'make' dentro da pasta /src.
