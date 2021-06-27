@@ -64,7 +64,7 @@ public class Player {
 	*/
 
   public void moveUp(long delta) {
-    if ((this.cy - (this.getHeight() / 2)) > v_limit[0]) {
+    if ((this.cy - (this.getHeight() / 2)) > this.v_limit[0]) {
       this.cy -= delta;
     } else {
       this.cy = this.v_limit[0] + (this.height / 2);
@@ -79,7 +79,7 @@ public class Player {
 	*/
 
   public void moveDown(long delta) {
-    if (this.cy + (this.getHeight() / 2) < v_limit[1]) {
+    if (this.cy + (this.getHeight() / 2) < this.v_limit[1]) {
       this.cy += delta;
     } else {
       this.cy = this.v_limit[1] - (this.height / 2);
