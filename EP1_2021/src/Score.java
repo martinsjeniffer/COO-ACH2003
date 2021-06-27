@@ -7,14 +7,14 @@ import java.awt.*;
 */
 
 public class Score {
+  private String playerId;
+  private int score;
 
   /**
     Construtor da classe Score.
 
     @param playerId uma string que identifica o player ao qual este placar está associado.
   */
-  String playerId;
-  int score;
 
   public Score(String playerId) {
     this.score = 0;
