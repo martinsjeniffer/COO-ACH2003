@@ -1,7 +1,7 @@
 all: EP2
 
 EP2: 
-	javac *.java
+	javac *.java -Xlint:unchecked
 
 clean:
 	rm -f *.class *.exe
