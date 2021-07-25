@@ -1,9 +1,9 @@
 import java.time.*;
 
 public class Reserva{
-  String nomeDaSala ;
-  LocalDateTime dataInicial;
-  LocalDateTime dataFinal;
+  private String nomeDaSala;
+  private LocalDateTime dataInicial;
+  private LocalDateTime dataFinal;
 
   public Reserva(String nomeDaSala, LocalDateTime dataInicial, LocalDateTime dataFinal) {
     this.nomeDaSala = nomeDaSala;
@@ -11,15 +11,15 @@ public class Reserva{
     this.dataFinal = dataFinal;
   }
 
-  String getNomeDaSala() {
-    return nomeDaSala;
+  public String getNomeDaSala() {
+    return this.nomeDaSala;
   }
 
-  LocalDateTime getDataInicial() {
-    return dataInicial;
+  public LocalDateTime getDataInicial() {
+    return this.dataInicial;
   }
 
-  LocalDateTime getDataFinal() {
-    return dataFinal;
+  public LocalDateTime getDataFinal() {
+    return this.dataFinal;
   }
 }

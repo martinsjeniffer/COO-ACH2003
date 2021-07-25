@@ -1,23 +1,25 @@
-public class Sala{
-  String nome;
-  int capacidadeMaxima;
-  String descricao;
+public class Sala {
+  private int capacidade;
+  private String nome;
+  private String local;
+  private String observacoes;
 
-  public Sala(String nome, int capacidadeMaxima, String descricao) {
+  public Sala(String nome, String local, String observacoes, int capacidade) {
+    this.capacidade = capacidade;
     this.nome = nome;
-    this.capacidadeMaxima = capacidadeMaxima;
-    this.descricao = descricao;
+    this.local = local;
+    this.observacoes = observacoes;
   }
 
   String getNome() {
-    return nome;
+    return this.nome;
   }
 
-  int getCapacidadeMaxima() {
-    return capacidadeMaxima;
+  int getCapacidade() {
+    return this.capacidade;
   }
 
-  String getDescricao() {
-    return descricao;
+  String getObservacoes() {
+    return this.observacoes;
   }
 }

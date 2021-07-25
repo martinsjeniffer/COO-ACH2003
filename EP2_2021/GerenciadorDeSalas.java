@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class GerenciadorDeSalas {
-  public void adicionaSalaChamada(String nome, int capacidadeMaxima,String descricao) {
+  public void adicionaSalaChamada(String nome, int capacidadeMaxima, String descricao) {
 
   }
 

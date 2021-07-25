@@ -1,8 +1,8 @@
 import java.time.*;
 
 public class Participante{
-  String email;
-  LocalDateTime inicio, fim;
+  private String email;
+  private LocalDateTime inicio, fim;
 
   public Participante(String email, LocalDateTime inicio, LocalDateTime fim) {
     this.email = email;
@@ -10,15 +10,15 @@ public class Participante{
     this.fim = fim;
   }
 
-  String getEmail() {
-    return email;
+  public String getEmail() {
+    return this.email;
   }
 
-  LocalDateTime getInicio() {
-    return inicio;
+  public LocalDateTime getInicio() {
+    return this.inicio;
   }
 
-  LocalDateTime getFim() {
-    return fim;
+  public LocalDateTime getFim() {
+    return this.fim;
   }
 }
