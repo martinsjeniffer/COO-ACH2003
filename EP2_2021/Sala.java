@@ -4,6 +4,12 @@ public class Sala {
   private String local;
   private String observacoes;
 
+  public Sala(String nome, int capacidade, String observacoes){
+    this.nome = nome;
+    this.capacidade = capacidade;
+    this.observacoes = observacoes;
+  }
+
   public Sala(String nome, String local, String observacoes, int capacidade) {
     this.capacidade = capacidade;
     this.nome = nome;

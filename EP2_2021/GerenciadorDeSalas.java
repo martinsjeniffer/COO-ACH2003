@@ -4,7 +4,7 @@ import java.util.*;
 public class GerenciadorDeSalas {
   /* que deve receber o nome da sala, a capacidade máxima da sala, e uma descrição;*/
   public void adicionaSalaChamada(String nome, int capacidadeMaxima, String descricao) {
-
+    Sala novaSala = new Sala(nome, "",  descricao, 10);
   }
   
   /*que deve receber  o nome da sala a ser removida;*/
@@ -24,7 +24,9 @@ public class GerenciadorDeSalas {
 
   /* que recebe um nome de sala, um LocalDateTime que indica o início da reserva e um outro LocalDateTime para indicar o final da reserva. O método deve devolver uma instância de Reserva;*/
   public Reserva reservaSalaChamada(String nomeDaSala, LocalDateTime dataInicial, LocalDateTime dataFinal) {
-    return null;
+    Reserva novaReserva = new Reserva(nomeDaSala, dataInicial, dataFinal);
+    
+    return novaReserva;
   }
 
   

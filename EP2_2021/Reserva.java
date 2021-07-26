@@ -1,18 +1,20 @@
 import java.time.*;
 
 public class Reserva{
-  private String nomeDaSala;
   private LocalDateTime dataInicial;
   private LocalDateTime dataFinal;
+  private Sala sala;
+  private ArrayList<Participante> Participantes;
 
-  public Reserva(String nomeDaSala, LocalDateTime dataInicial, LocalDateTime dataFinal) {
-    this.nomeDaSala = nomeDaSala;
+
+  public Reserva(Sala sala, LocalDateTime dataInicial, LocalDateTime dataFinal) {
     this.dataInicial = dataInicial;
     this.dataFinal = dataFinal;
+    this.sala = sala;
   }
 
-  public String getNomeDaSala() {
-    return this.nomeDaSala;
+  public Sala sala() {
+    return sala;
   }
 
   public LocalDateTime getDataInicial() {
@@ -21,5 +23,9 @@ public class Reserva{
 
   public LocalDateTime getDataFinal() {
     return this.dataFinal;
+  }
+
+  public ArrayList <Participante> getParticipantes(){
+    return this.Participantes;
   }
 }
