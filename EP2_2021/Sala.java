@@ -17,15 +17,35 @@ public class Sala {
     this.observacoes = observacoes;
   }
 
-  String getNome() {
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public void setLocal(String local) {
+    this.local = local;
+  }
+
+  public void setCapacidade(int capacidade) {
+    this.capacidade = capacidade;
+  }
+
+  public void setObservacoes(String observacoes) {
+    this.observacoes = observacoes;
+  }
+
+  public String getNome() {
     return this.nome;
   }
 
-  int getCapacidade() {
+  public int getCapacidade() {
     return this.capacidade;
   }
 
-  String getObservacoes() {
+  public String getObservacoes() {
     return this.observacoes;
+  }
+
+  public String getLocal() {
+    return this.local;
   }
 }

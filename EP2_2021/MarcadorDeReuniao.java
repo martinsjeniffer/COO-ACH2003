@@ -38,13 +38,12 @@ public class MarcadorDeReuniao{
   }
 
 
-//A definição dos participantes da reunião
+  //A definição dos participantes da reunião
 	public void marcarReuniaoEntre(LocalDate dataInicial, LocalDate dataFinal, Collection<String> listaDeParticipantes){
 	}
 
-/*deve exibir um relatório com as escolhas realizadas e indicar em quais horários todos os participantes
-poderiam participar da reunião.*/
-
+  /*deve exibir um relatório com as escolhas realizadas e indicar em quais horários todos os participantes
+  poderiam participar da reunião.*/
 	public void mostraSobreposicao(){
 	}
 }
