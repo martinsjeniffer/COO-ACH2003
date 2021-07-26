@@ -15,6 +15,11 @@ public class Participante{
     this.disponibilidade = new ArrayList<Intervalo>();
   }
 
+  public Participante(String email){
+    this.email = email;
+    this.disponibilidade = new ArrayList<Disponibilidade>();
+  }
+
   public String getEmail() {
     return this.email;
   }
