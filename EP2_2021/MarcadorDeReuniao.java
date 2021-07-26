@@ -79,12 +79,12 @@ public class MarcadorDeReuniao{
     }
 
     ReuniaoMarcada = new Reuniao(Participantes, dataInicial, dataFinal);
-
 	}
 
   /*deve exibir um relatório com as escolhas realizadas e indicar em quais horários todos os participantes
   poderiam participar da reunião.*/
 	public void mostraSobreposicao(){
-    
+    // não sei bem se é isso mesmo rs
+    reuniao.mostraSobreposicao()
 	}
 }

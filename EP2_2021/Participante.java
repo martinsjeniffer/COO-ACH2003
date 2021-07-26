@@ -24,7 +24,7 @@ public class Participante{
     return this.email;
   }
 
-  public ArrayList<Intervalo> getDisponibilidade(){
+  public ArrayList<Disponibilidade> getDisponibilidade(){
     return this.disponibilidade;
   }
 
