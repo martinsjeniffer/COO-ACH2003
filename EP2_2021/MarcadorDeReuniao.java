@@ -41,7 +41,8 @@ public class MarcadorDeReuniao{
       return;
     }
        
-    LocalDateTime inicioReuniao= reuniao.getInicioIntervalo().atStartOfDay();    LocalDateTime fimReuniao = reuniao.getFinalIntervalo().atTime(23,59,59);
+    LocalDateTime inicioReuniao= reuniao.getInicioIntervalo().atStartOfDay();    
+    LocalDateTime fimReuniao = reuniao.getFinalIntervalo().atTime(23,59,59);
 
     if(!((inicio.isAfter(inicioReuniao) || inicio.isEqual(inicioReuniao))
     && (fim.isBefore(fimReuniao) || fim.isEqual(fimReuniao)))){
@@ -54,14 +55,14 @@ public class MarcadorDeReuniao{
 
     //procurando o participante recebido no argumento pelo email na lista de Participantes da reunião
     for(Participante part : Participantes){
-      if(part.email.equals(participante)){
+      if(part.getEmail().equals(participante)){
         //Participante encontrado
         participanteInformado = part;
         break;
       }
     }
 
-    if(participanteSelecionado != null){
+    if(participanteInformado != null){
       //Participante existe -- Inclui um intervalo disponível dele
       participanteInformado.setDisponibilidade(inicio, fim);
     }else{
@@ -77,14 +78,14 @@ public class MarcadorDeReuniao{
     for(String email : listaDeParticipantes){
       Participantes.add(new Participante(email));
     }
-
-    ReuniaoMarcada = new Reuniao(Participantes, dataInicial, dataFinal);
+    Reuniao ReuniaoMarcada = new Reuniao(Participantes, dataInicial, dataFinal);
 	}
 
   /*deve exibir um relatório com as escolhas realizadas e indicar em quais horários todos os participantes
   poderiam participar da reunião.*/
 	public void mostraSobreposicao(){
+    //imprime as interseccoes?
     // não sei bem se é isso mesmo rs
-    reuniao.mostraSobreposicao()
+    reuniao.mostraSobreposicao();
 	}
 }

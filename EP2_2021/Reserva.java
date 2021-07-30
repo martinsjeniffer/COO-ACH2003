@@ -1,3 +1,4 @@
+import java.util.*;
 import java.time.*;
 
 public class Reserva{
@@ -25,7 +26,7 @@ public class Reserva{
     return this.dataFinal;
   }
 
-  public ArrayList <Participante> getParticipantes(){
+  public ArrayList<Participante> getParticipantes(){
     return this.Participantes;
   }
 }

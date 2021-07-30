@@ -17,7 +17,7 @@ public class Participante{
 
   public Participante(String email){
     this.email = email;
-    this.disponibilidade = new ArrayList<Disponibilidade>();
+    this.disponibilidade = new ArrayList<Disponibilidade>(); //tem que passar isso como parametro?
   }
 
   public String getEmail() {

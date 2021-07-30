@@ -1,3 +1,4 @@
+//completa
 public class Sala {
   private int capacidade;
   private String nome;
