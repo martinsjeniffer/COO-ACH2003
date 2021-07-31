@@ -12,7 +12,7 @@ public class Participante{
     this.email = email;
     this.inicio = inicio;
     this.fim = fim;
-    this.disponibilidade = new ArrayList<Intervalo>();
+    this.disponibilidade = new ArrayList<Disponibilidade>();
   }
 
   public Participante(String email){

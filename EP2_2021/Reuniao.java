@@ -10,7 +10,7 @@ public class Reuniao {
   private LocalDate finalIntervalo;
   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
   
-  public Reuniao(ArrayList<Participante> participantes, LocalDate inicioIntervalo, LocalDate LocalDatefinalIntervalo){
+  public Reuniao(ArrayList<Participante> participantes, LocalDate inicioIntervalo, LocalDate finalIntervalo){
       this.participantes = participantes;
       this.inicioIntervalo = inicioIntervalo;
       this.finalIntervalo = finalIntervalo;
