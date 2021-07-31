@@ -36,7 +36,7 @@ public class Participante{
     return this.fim;
   }
 
-  void setDisponibilidade(LocalDateTime inicio, LocalDateTime fim){
+  public void setDisponibilidade(LocalDateTime inicio, LocalDateTime fim){
     Disponibilidade novaDisponibilidade = new Disponibilidade(inicio, fim);
     disponibilidade.add(novaDisponibilidade);
   }

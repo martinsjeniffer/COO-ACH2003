@@ -52,25 +52,36 @@ public class main {
     //Código teste para entender o fluxo de dados do programa
     
     Collection<String> participantes = new ArrayList<String>();
+    GerenciadorDeSalas gerenciaSalas = new GerenciadorDeSalas();
     
-    participantes.add("Paulo");
-    participantes.add("Pedro");
-    participantes.add("Ale");
+
+    String paulo = "paulo@gmail.com";
+    String joana = "joana@outlook.com";
+    String camila = "camila@gmail.com";
+
+    participantes.add(paulo);
+    participantes.add(joana);
+    participantes.add(camila);
     
     MarcadorDeReuniao marcador = new MarcadorDeReuniao();
     marcador.marcarReuniaoEntre(LocalDate.parse("2019-01-01"), LocalDate.parse("2019-01-10"), participantes);
     
-    marcador.indicaDisponibilidadeDe("Paulo", LocalDateTime.parse("2019-01-01T08:30"), LocalDateTime.parse("2019-01-01T10:00"));
-    marcador.indicaDisponibilidadeDe("Paulo", LocalDateTime.parse("2019-01-01T16:00"), LocalDateTime.parse("2019-01-01T18:00"));
-    marcador.indicaDisponibilidadeDe("Paulo", LocalDateTime.parse("2019-01-03T12:00"), LocalDateTime.parse("2019-01-03T16:00"));
-    marcador.indicaDisponibilidadeDe("Pedro", LocalDateTime.parse("2019-01-01T09:00"), LocalDateTime.parse("2019-01-01T17:00"));
-    marcador.indicaDisponibilidadeDe("Pedro", LocalDateTime.parse("2019-01-03T11:00"), LocalDateTime.parse("2019-01-03T13:00"));
-    marcador.indicaDisponibilidadeDe("Pedro", LocalDateTime.parse("2019-01-03T15:00"), LocalDateTime.parse("2019-01-03T17:00"));
-    marcador.indicaDisponibilidadeDe("Ale", LocalDateTime.parse("2019-01-02T01:00"), LocalDateTime.parse("2019-01-02T23:00"));
-    marcador.indicaDisponibilidadeDe("Ale", LocalDateTime.parse("2019-01-01T09:30"), LocalDateTime.parse("2019-01-01T16:30"));
-    marcador.indicaDisponibilidadeDe("Ale", LocalDateTime.parse("2019-01-03T12:30"), LocalDateTime.parse("2019-01-03T15:30"));
-    
+    marcador.indicaDisponibilidadeDe(paulo, LocalDateTime.parse("2019-01-01T08:30"), LocalDateTime.parse("2019-01-01T10:00"));
+    // marcador.indicaDisponibilidadeDe("Paulo", LocalDateTime.parse("2019-01-01T16:00"), LocalDateTime.parse("2019-01-01T18:00"));
+    // marcador.indicaDisponibilidadeDe("Paulo", LocalDateTime.parse("2019-01-03T12:00"), LocalDateTime.parse("2019-01-03T16:00"));
+    marcador.indicaDisponibilidadeDe(joana, LocalDateTime.parse("2019-01-01T09:00"), LocalDateTime.parse("2019-01-01T17:00"));
+    marcador.indicaDisponibilidadeDe(joana, LocalDateTime.parse("2019-01-03T11:00"), LocalDateTime.parse("2019-01-03T13:00"));
+    marcador.indicaDisponibilidadeDe(joana, LocalDateTime.parse("2019-01-03T15:00"), LocalDateTime.parse("2019-01-03T17:00"));
+    marcador.indicaDisponibilidadeDe(camila, LocalDateTime.parse("2019-01-02T01:00"), LocalDateTime.parse("2019-01-02T23:00"));
+    marcador.indicaDisponibilidadeDe(camila, LocalDateTime.parse("2019-01-01T09:30"), LocalDateTime.parse("2019-01-01T16:30"));
+    marcador.indicaDisponibilidadeDe(camila, LocalDateTime.parse("2019-01-03T12:30"), LocalDateTime.parse("2019-01-03T15:30"));
 
-    marcador.novaReuniao.mostraSobreposicao();
+    marcador.mostraSobreposicao();
+
+    gerenciaSalas.adicionaSalaChamada("call Paulo, Pedro e Ale", 5, "descricao qualquer");
+    gerenciaSalas.reservaSalaChamada("call Paulo, Pedro e Ale", LocalDateTime.parse("2019-01-01T09:30"), LocalDateTime.parse("2019-01-01T10:00"));
+    
+    gerenciaSalas.imprimeReservasDaSala("call Paulo, Pedro e Ale");
+    
   }
 }

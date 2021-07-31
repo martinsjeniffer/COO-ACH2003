@@ -4,42 +4,41 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Reuniao {
-
-  private ArrayList<Participante> participantes;
+  private ArrayList<Participante> listaParticipantes;
   private ArrayList<Disponibilidade> listaInterseccoes;
   private LocalDate inicioIntervalo;
   private LocalDate finalIntervalo;
-  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
 
   public Reuniao(
     ArrayList<Participante> participantes,
-    LocalDate inicioIntervalo,
-    LocalDate finalIntervalo
+    LocalDate inicio,
+    LocalDate fim
   ) {
-    this.participantes = participantes;
-    this.inicioIntervalo = inicioIntervalo;
-    this.finalIntervalo = finalIntervalo;
+    this.listaParticipantes = participantes;
+    this.inicioIntervalo = inicio;
+    this.finalIntervalo = fim;
     this.listaInterseccoes = new ArrayList<>();
   }
 
   public ArrayList<Participante> getParticipantes() {
-    return participantes;
+    return this.listaParticipantes;
   }
 
-  public LocalDate getInicioIntervalo() {
-    return inicioIntervalo;
+  public LocalDate getInicio() {
+    return this.inicioIntervalo;
   }
 
-  public LocalDate getFinalIntervalo() {
-    return finalIntervalo;
+  public LocalDate getFim() {
+    return this.finalIntervalo;
   }
 
   public ArrayList<Disponibilidade> getInterseccoes() {
-    return listaInterseccoes;
+    return this.listaInterseccoes;
   }
 
   public void setParticipantes(ArrayList<Participante> participantes) {
-    this.participantes = participantes;
+    this.listaParticipantes = participantes;
   }
 
   public void setInicioIntervalo(LocalDate inicioIntervalo) {
@@ -50,9 +49,8 @@ public class Reuniao {
     this.finalIntervalo = finalIntervalo;
   }
 
-  // há de se analisar melhor o funcionamento disso
   void defineInterseccoes(int index, LocalDateTime inicio, LocalDateTime fim) {
-    Participante participante = participantes.get(index);
+    Participante participante = listaParticipantes.get(index);
     ArrayList<Disponibilidade> listaIntervalos = participante.getDisponibilidade();
     LocalDateTime inicioPadrao = inicio;
     LocalDateTime fimPadrao = fim;
@@ -69,7 +67,7 @@ public class Reuniao {
           inicioAtual.getInicio();
 
         //Caso a lista não esteja cheia
-        if (participantes.size() - 1 != index) {
+        if (listaParticipantes.size() - 1 != index) {
           //Chama o método recursivamente enviando o proximo participante
           defineInterseccoes(index + 1, inicio, fim);
         } else {
@@ -78,39 +76,6 @@ public class Reuniao {
       }
       inicio = inicioPadrao;
       fim = fimPadrao;
-    }
-  }
-
-  public void mostraSobreposicao() {
-    //Exibe os horários disponíveis inseridos pelos participantes
-    for (Participante participante : participantes) {
-      ArrayList<Disponibilidade> listaDisponibilidade = participante.getDisponibilidade();
-      System.out.println("Participante: " + participante.getEmail());
-      if (listaDisponibilidade != null) {
-        for (Disponibilidade disponibilidade : listaDisponibilidade) {
-          System.out.println(
-            "De " +
-            disponibilidade.getInicio().format(formatter) +
-            " até " +
-            disponibilidade.getFim().format(formatter)
-          );
-        }
-      }
-      System.out.println("");
-    }
-
-    LocalDateTime InicioDisponibilidade = inicioIntervalo.atStartOfDay();
-    LocalDateTime FimDisponibilidade = finalIntervalo.atTime(23, 59, 59);
-
-    defineInterseccoes(0, InicioDisponibilidade, FimDisponibilidade);
-
-    if (listaInterseccoes != null) {
-      System.out.println("Lista de horários disponíveis para todos: ");
-      for (Disponibilidade interseccao : listaInterseccoes) {
-        System.out.println("De " + interseccao.getInicio().format(formatter) + " ate " + interseccao.getFim().format(formatter));
-      }
-    } else {
-      System.out.println("Não há intersecções de horários");
     }
   }
 }
