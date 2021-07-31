@@ -59,7 +59,7 @@ public class MarcadorDeReuniao {
     for (Participante pessoa : listaParticipantes) {
       dispParticipante = pessoa.getDisponibilidade();
 
-      System.out.println("--------------------------------");
+      System.out.println("---------------------------------------------");
       System.out.println(pessoa.getEmail());
       System.out.println("\nPeríodos disponíveis:");
       if (dispParticipante != null) {
@@ -67,7 +67,7 @@ public class MarcadorDeReuniao {
           disponibilidade.imprimeDisponibilidade();
         }
       }
-      System.out.println("--------------------------------\n");
+      System.out.println("----------------------------------------------\n");
     }
 
     inicioDisp = novaReuniao.getInicio().atStartOfDay();
