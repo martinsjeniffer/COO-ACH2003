@@ -44,21 +44,30 @@ public class Reuniao {
     this.finalIntervalo = finalIntervalo;
   }
 
+  private boolean disponibilidadeValida(Disponibilidade disponibilidade, LocalDateTime inicio, LocalDateTime fim) {
+    return disponibilidade.getInicio().isBefore(fim) && disponibilidade.getFim().isAfter(inicio);
+  }
+
   void defineInterseccoes(int index, LocalDateTime inicio, LocalDateTime fim) {
-    Participante participante = listaParticipantes.get(index);
-    ArrayList<Disponibilidade> listaIntervalos = participante.getDisponibilidade();
-    LocalDateTime inicioPadrao = inicio;
-    LocalDateTime fimPadrao = fim;
+    Participante participante;
+    ArrayList<Disponibilidade> listaIntervalos;
+    LocalDateTime inicioPadrao, fimPadrao;
 
-    for (Disponibilidade inicioAtual : listaIntervalos) {
-      if (
-        inicioAtual.getInicio().isBefore(fim) &&
-        inicioAtual.getFim().isAfter(inicio)
-      ) {
-        if (inicioAtual.getFim().isBefore(fim)) fim = inicioAtual.getFim();
+    inicioPadrao = inicio;
+    fimPadrao = fim;
 
-        if (inicioAtual.getInicio().isAfter(inicio)) inicio =
-          inicioAtual.getInicio();
+    participante = listaParticipantes.get(index);
+    listaIntervalos = participante.getDisponibilidade();
+
+    for (Disponibilidade disponibilidade : listaIntervalos) {
+      if (disponibilidadeValida(disponibilidade, inicio, fim)) {
+        if (disponibilidade.getFim().isBefore(fim)) {
+          fim = disponibilidade.getFim();
+        }
+
+        if (disponibilidade.getInicio().isAfter(inicio)) {
+          inicio = disponibilidade.getInicio();
+        }
 
         if (listaParticipantes.size() - 1 != index) {
           defineInterseccoes(index + 1, inicio, fim);
@@ -66,6 +75,7 @@ public class Reuniao {
           listaInterseccoes.add(new Disponibilidade(inicio, fim));
         }
       }
+
       inicio = inicioPadrao;
       fim = fimPadrao;
     }
