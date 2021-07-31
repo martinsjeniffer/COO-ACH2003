@@ -9,12 +9,7 @@ public class Reuniao {
   private LocalDate inicioIntervalo;
   private LocalDate finalIntervalo;
 
-
-  public Reuniao(
-    ArrayList<Participante> participantes,
-    LocalDate inicio,
-    LocalDate fim
-  ) {
+  public Reuniao(ArrayList<Participante> participantes, LocalDate inicio, LocalDate fim) {
     this.listaParticipantes = participantes;
     this.inicioIntervalo = inicio;
     this.finalIntervalo = fim;
@@ -56,7 +51,6 @@ public class Reuniao {
     LocalDateTime fimPadrao = fim;
 
     for (Disponibilidade inicioAtual : listaIntervalos) {
-      //Se houver uma interseccao, caso contrario o for nem incia
       if (
         inicioAtual.getInicio().isBefore(fim) &&
         inicioAtual.getFim().isAfter(inicio)
@@ -66,9 +60,7 @@ public class Reuniao {
         if (inicioAtual.getInicio().isAfter(inicio)) inicio =
           inicioAtual.getInicio();
 
-        //Caso a lista não esteja cheia
         if (listaParticipantes.size() - 1 != index) {
-          //Chama o método recursivamente enviando o proximo participante
           defineInterseccoes(index + 1, inicio, fim);
         } else {
           listaInterseccoes.add(new Disponibilidade(inicio, fim));

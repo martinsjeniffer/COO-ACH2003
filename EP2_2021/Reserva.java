@@ -7,7 +7,6 @@ public class Reserva{
   private Sala sala;
   private ArrayList<Participante> Participantes;
 
-
   public Reserva(Sala sala, LocalDateTime dataInicial, LocalDateTime dataFinal) {
     this.dataInicial = dataInicial;
     this.dataFinal = dataFinal;

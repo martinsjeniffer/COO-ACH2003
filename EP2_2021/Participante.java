@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ public class Participante{
 
   public Participante(String email){
     this.email = email;
-    this.disponibilidade = new ArrayList<Disponibilidade>(); //tem que passar isso como parametro?
+    this.disponibilidade = new ArrayList<Disponibilidade>();
   }
 
   public String getEmail() {
