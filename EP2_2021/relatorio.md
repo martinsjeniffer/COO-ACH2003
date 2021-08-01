@@ -9,7 +9,7 @@
 
 # ACH2003 - Computação Orientada a Objetos
 ### Jeniffer Florinda Martins da Silva, nusp **10377966**
-
+### Larissa Morais Almada, nusp **11912220** turma 2021102, professor Daniel Cordeiro
 <hr>
 
 ### GERENCIADOR DE SALAS PARA O MARCADOR DE REUNIÕES
