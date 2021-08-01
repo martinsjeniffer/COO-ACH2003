@@ -34,6 +34,10 @@ Para executar:
     java <arquivo_main_contendo_implementacao>
 ```
 
+**DIAGRAMA UML DO PROGRAMA**
+
+![Diagrama UML do EP](./diagrama_UML.png)
+
 **Funcionamento do programa**
 
 Para marcar uma reunião entre uma lista de participantes pode-se utilizar a classe `MarcadorDeReuniao`
