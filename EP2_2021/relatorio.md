@@ -8,7 +8,7 @@
 </style>
 
 # ACH2003 - Computação Orientada a Objetos
-### Jeniffer Florinda Martins da Silva, nusp **10377966**turma ACH2203-2021194, professor Flavio Coutinho
+### Jeniffer Florinda Martins da Silva, nusp **10377966** turma ACH2203-2021194, professor Flavio Coutinho
 ### Larissa Morais Almada, nusp **11912220** turma ACH2203-2021102, professor Daniel Cordeiro
 <hr>
 
