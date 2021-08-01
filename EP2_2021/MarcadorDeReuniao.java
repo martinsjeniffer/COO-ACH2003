@@ -2,7 +2,7 @@ import java.time.*;
 import java.util.*;
 
 public class MarcadorDeReuniao {
-  Reuniao novaReuniao;
+  private Reuniao novaReuniao;
 
   public void marcarReuniaoEntre(LocalDate dataInicial, LocalDate dataFinal, Collection<String> listaDeParticipantes) {
     ArrayList<Participante> participantes = new ArrayList<Participante>();
