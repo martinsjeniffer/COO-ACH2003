@@ -6,8 +6,12 @@ public class GerenciadorDeSalas {
   private Collection<Reserva> reservas = new ArrayList<Reserva>();
 
   public void adicionaSalaChamada(String nome, int capacidadeMaxima, String descricao) {
-    Sala novaSala = new Sala(nome, capacidadeMaxima,  descricao);
-    this.salas.add(novaSala);
+    if (reservasParaSala(nome).size() == 0) {
+      Sala novaSala = new Sala(nome, capacidadeMaxima,  descricao);
+      this.salas.add(novaSala);
+    } else {
+      System.out.println("Já existe uma reserva para a sala '" + nome + "'.\n");
+    }
   }
 
   public void removeSalaChamada(String nomeDaSala) {
@@ -31,11 +35,17 @@ public class GerenciadorDeSalas {
     Reserva novaReserva = null;
 
     for (Sala sala : listaDeSalas()) {
-      if (sala.getNome().equals(nomeDaSala)){
+        if (sala.getNome().equals(nomeDaSala)){
         novaReserva = new Reserva(sala, dataInicial, dataFinal);
         this.reservas.add(novaReserva);
+        System.out.println(">> RESERVA DA SALA '" + nomeDaSala + "' EXECUTADA COM SUCESSO!");
+        break;
       }
-      break;
+    }
+    
+    if (novaReserva == null) {
+      System.out.println("ERRO em [reservaSalaChamada()]:");
+      System.out.println("Para reservar uma sala primeiro é necessário instanciá-la pelo método adicionaSalaChamada()\n");
     }
 
     return novaReserva;
@@ -46,21 +56,27 @@ public class GerenciadorDeSalas {
   }
 
   public Collection<Reserva> reservasParaSala(String nomeSala) {
-    return this.reservas;
-  }
+    Collection<Reserva> listaDeReservas = new ArrayList<Reserva>();
 
-  public void imprimeReservasDaSala(String nomeSala) {
-    int i = 0;
-
-    for (Reserva reserva : this.reservas) {
-      if (reserva.sala().getNome() == nomeSala) {
-        reserva.imprimeReserva();
-        i++;
+    for (Reserva r : this.reservas) {
+      if (r.sala().getNome().equals(nomeSala)) {
+        listaDeReservas.add(r);
       }
     }
 
-    if (i == 0) {
-      System.out.println ("\nEsta sala não possui reservas.\n");
+    return listaDeReservas;
+  }
+
+  public void imprimeReservasDaSala(String nomeSala) {
+    Collection<Reserva> listaReservasParaSala = this.reservasParaSala(nomeSala);
+
+    if (listaReservasParaSala.size() == 0) {
+      System.out.println ("ERRO em [imprimeReservasDaSala()]: \nA sala '" + nomeSala + "' não possui reservas.\n");
+      return;
+    }
+
+    for (Reserva reserva : listaReservasParaSala) {
+      reserva.imprimeReserva();
     }
   }
 }

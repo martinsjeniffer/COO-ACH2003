@@ -18,7 +18,7 @@ public class MarcadorDeReuniao {
     LocalDateTime inicioReuniao, fimReuniao;
 
     if (inicio.isAfter(fim)) {
-      System.out.println("ERRO: Período de inicio da disponibilidade deve ser antes do final.");
+      System.out.println("ERRO em [indicaDisponibilidadeDe()]: Período de inicio da disponibilidade deve ser antes do final.");
       return;
     }
 
@@ -27,11 +27,11 @@ public class MarcadorDeReuniao {
       fimReuniao    = this.novaReuniao.getFim().atTime(23, 59, 59);
   
       if (inicio.isBefore(inicioReuniao) || fim.isAfter(fimReuniao)) {
-        System.out.println("ERRO: O horário indicado de disponibilidade não está dentro do intervalo possível para a reunião.");
+        System.out.println("ERRO em [indicaDisponibilidadeDe()]: O horário indicado de disponibilidade não está dentro do intervalo possível para a reunião.");
         return;
       }
     } catch (NullPointerException e) {
-      System.out.println("ERRO: " + e + "\nPrimeiro é preciso instanciar uma nova reunião com o método marcarReuniaoEntre().\n");
+      System.out.println("ERRO em [indicaDisponibilidadeDe()]: " + e + "\nPrimeiro é preciso instanciar uma nova reunião com o método marcarReuniaoEntre().\n");
     }
 
     ArrayList<Participante> listaParticipantes = novaReuniao.getParticipantes();
@@ -49,7 +49,7 @@ public class MarcadorDeReuniao {
       return;
     }
 
-    System.out.println("ERRO: Pessoa informada não faz parte da lista de participantes");
+    System.out.println("ERRO em [indicaDisponibilidadeDe()]: Pessoa informada não faz parte da lista de participantes");
   }
 
   public void mostraSobreposicao() {
@@ -93,7 +93,7 @@ public class MarcadorDeReuniao {
       System.out.println("Infelizmente não existem horários compatíveis para todos os participantes.");
       System.out.println("Verifique se as disponibilidades dos participantes foram registradas.");
     } catch (NullPointerException e) {
-      System.out.println("ERRO: " + e + "\nPrimeiro é preciso instanciar uma nova reunião com o método marcarReuniaoEntre().\n");
+      System.out.println("ERRO em [mostraSobreposicao()]: " + e + "\nPrimeiro é preciso instanciar uma nova reunião com o método marcarReuniaoEntre().\n");
     }
   }
 }
