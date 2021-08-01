@@ -22,12 +22,16 @@ public class MarcadorDeReuniao {
       return;
     }
 
-    inicioReuniao = this.novaReuniao.getInicio().atStartOfDay();
-    fimReuniao    = this.novaReuniao.getFim().atTime(23, 59, 59);
-
-    if (inicio.isBefore(inicioReuniao) || fim.isAfter(fimReuniao)) {
-      System.out.println("ERRO: O horário indicado de disponibilidade não está dentro do intervalo possível para a reunião.");
-      return;
+    try {
+      inicioReuniao = this.novaReuniao.getInicio().atStartOfDay();
+      fimReuniao    = this.novaReuniao.getFim().atTime(23, 59, 59);
+  
+      if (inicio.isBefore(inicioReuniao) || fim.isAfter(fimReuniao)) {
+        System.out.println("ERRO: O horário indicado de disponibilidade não está dentro do intervalo possível para a reunião.");
+        return;
+      }
+    } catch (NullPointerException e) {
+      System.out.println("ERRO: " + e + "\nPrimeiro é preciso instanciar uma nova reunião com o método marcarReuniaoEntre().\n");
     }
 
     ArrayList<Participante> listaParticipantes = novaReuniao.getParticipantes();
@@ -54,37 +58,42 @@ public class MarcadorDeReuniao {
     ArrayList<Disponibilidade> listaInterseccoes;
     LocalDateTime inicioDisp, fimDisp;
 
-    listaParticipantes = novaReuniao.getParticipantes();
-    
-    for (Participante pessoa : listaParticipantes) {
-      dispParticipante = pessoa.getDisponibilidade();
-
-      System.out.println("---------------------------------------------");
-      System.out.println(pessoa.getEmail());
-      System.out.println("\nPeríodos disponíveis:");
-      if (dispParticipante != null) {
-        for (Disponibilidade disponibilidade : dispParticipante) {
-          disponibilidade.imprimeDisponibilidade();
+    try {
+      listaParticipantes = novaReuniao.getParticipantes();
+      
+      for (Participante pessoa : listaParticipantes) {
+        dispParticipante = pessoa.getDisponibilidade();
+  
+        if (dispParticipante.size() > 0) {
+          System.out.println("---------------------------------------------");
+          System.out.println(pessoa.getEmail());
+          System.out.println("\nPeríodos disponíveis:");
+          for (Disponibilidade disponibilidade : dispParticipante) {
+            disponibilidade.imprimeDisponibilidade();
+          }
+          System.out.println("----------------------------------------------\n");
         }
       }
-      System.out.println("----------------------------------------------\n");
-    }
-
-    inicioDisp = novaReuniao.getInicio().atStartOfDay();
-    fimDisp = novaReuniao.getFim().atTime(23, 59, 59);
-
-    novaReuniao.defineInterseccoes(0, inicioDisp, fimDisp);
-    listaInterseccoes = novaReuniao.getInterseccoes();
-
-    if (listaInterseccoes != null) {
-      System.out.println("HORÁRIOS DISPONÍVEIS PARA TODES: ");
-      for (Disponibilidade interseccao : listaInterseccoes) {
-        interseccao.imprimeDisponibilidade();
+  
+      inicioDisp = novaReuniao.getInicio().atStartOfDay();
+      fimDisp = novaReuniao.getFim().atTime(23, 59, 59);
+  
+      novaReuniao.defineInterseccoes(0, inicioDisp, fimDisp);
+      listaInterseccoes = novaReuniao.getInterseccoes();
+  
+      if (listaInterseccoes.size() > 0) {
+        System.out.println("HORÁRIOS DISPONÍVEIS PARA TODES: ");
+        for (Disponibilidade interseccao : listaInterseccoes) {
+          interseccao.imprimeDisponibilidade();
+        }
+        System.out.println("");
+        return;
       }
-      System.out.println("");
-      return;
+  
+      System.out.println("Infelizmente não existem horários compatíveis para todos os participantes.");
+      System.out.println("Verifique se as disponibilidades dos participantes foram registradas.");
+    } catch (NullPointerException e) {
+      System.out.println("ERRO: " + e + "\nPrimeiro é preciso instanciar uma nova reunião com o método marcarReuniaoEntre().\n");
     }
-
-    System.out.println("Infelizmente não existem horários compatíveis para todos os participantes.");
   }
 }
