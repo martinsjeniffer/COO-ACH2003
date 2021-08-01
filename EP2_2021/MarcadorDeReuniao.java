@@ -22,8 +22,8 @@ public class MarcadorDeReuniao {
       return;
     }
 
-    inicioReuniao = novaReuniao.getInicio().atStartOfDay();
-    fimReuniao    = novaReuniao.getFim().atTime(23, 59, 59);
+    inicioReuniao = this.novaReuniao.getInicio().atStartOfDay();
+    fimReuniao    = this.novaReuniao.getFim().atTime(23, 59, 59);
 
     if (inicio.isBefore(inicioReuniao) || fim.isAfter(fimReuniao)) {
       System.out.println("ERRO: O horário indicado de disponibilidade não está dentro do intervalo possível para a reunião.");

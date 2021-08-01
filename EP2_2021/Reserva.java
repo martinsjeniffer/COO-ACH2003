@@ -36,6 +36,7 @@ public class Reserva {
     System.out.println("---------------------------------------------");
     System.out.println(this.sala.getNome());
     System.out.println("Capacidade máxima da sala: " + this.sala.getCapacidade() + " participantes.");
+    System.out.println("Descrição: " + this.sala.getObservacoes());
     System.out.println("Horário: " + this.dataInicial.format(padraoData) + " - " + this.dataFinal.format(padraoData));
     System.out.println("---------------------------------------------");
   }
