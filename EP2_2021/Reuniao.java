@@ -4,42 +4,36 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Reuniao {
-
-  private ArrayList<Participante> participantes;
+  private ArrayList<Participante> listaParticipantes;
   private ArrayList<Disponibilidade> listaInterseccoes;
   private LocalDate inicioIntervalo;
   private LocalDate finalIntervalo;
-  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-  public Reuniao(
-    ArrayList<Participante> participantes,
-    LocalDate inicioIntervalo,
-    LocalDate finalIntervalo
-  ) {
-    this.participantes = participantes;
-    this.inicioIntervalo = inicioIntervalo;
-    this.finalIntervalo = finalIntervalo;
+  public Reuniao(ArrayList<Participante> participantes, LocalDate inicio, LocalDate fim) {
+    this.listaParticipantes = participantes;
+    this.inicioIntervalo = inicio;
+    this.finalIntervalo = fim;
     this.listaInterseccoes = new ArrayList<>();
   }
 
   public ArrayList<Participante> getParticipantes() {
-    return participantes;
+    return this.listaParticipantes;
   }
 
-  public LocalDate getInicioIntervalo() {
-    return inicioIntervalo;
+  public LocalDate getInicio() {
+    return this.inicioIntervalo;
   }
 
-  public LocalDate getFinalIntervalo() {
-    return finalIntervalo;
+  public LocalDate getFim() {
+    return this.finalIntervalo;
   }
 
   public ArrayList<Disponibilidade> getInterseccoes() {
-    return listaInterseccoes;
+    return this.listaInterseccoes;
   }
 
   public void setParticipantes(ArrayList<Participante> participantes) {
-    this.participantes = participantes;
+    this.listaParticipantes = participantes;
   }
 
   public void setInicioIntervalo(LocalDate inicioIntervalo) {
@@ -50,67 +44,40 @@ public class Reuniao {
     this.finalIntervalo = finalIntervalo;
   }
 
-  // há de se analisar melhor o funcionamento disso
+  private boolean disponibilidadeValida(Disponibilidade disponibilidade, LocalDateTime inicio, LocalDateTime fim) {
+    return disponibilidade.getInicio().isBefore(fim) && disponibilidade.getFim().isAfter(inicio);
+  }
+
   void defineInterseccoes(int index, LocalDateTime inicio, LocalDateTime fim) {
-    Participante participante = participantes.get(index);
-    ArrayList<Disponibilidade> listaIntervalos = participante.getDisponibilidade();
-    LocalDateTime inicioPadrao = inicio;
-    LocalDateTime fimPadrao = fim;
+    Participante participante;
+    ArrayList<Disponibilidade> listaIntervalos;
+    LocalDateTime inicioPadrao, fimPadrao;
 
-    for (Disponibilidade inicioAtual : listaIntervalos) {
-      //Se houver uma interseccao, caso contrario o for nem incia
-      if (
-        inicioAtual.getInicio().isBefore(fim) &&
-        inicioAtual.getFim().isAfter(inicio)
-      ) {
-        if (inicioAtual.getFim().isBefore(fim)) fim = inicioAtual.getFim();
+    inicioPadrao = inicio;
+    fimPadrao = fim;
 
-        if (inicioAtual.getInicio().isAfter(inicio)) inicio =
-          inicioAtual.getInicio();
+    participante = listaParticipantes.get(index);
+    listaIntervalos = participante.getDisponibilidade();
 
-        //Caso a lista não esteja cheia
-        if (participantes.size() - 1 != index) {
-          //Chama o método recursivamente enviando o proximo participante
+    for (Disponibilidade disponibilidade : listaIntervalos) {
+      if (disponibilidadeValida(disponibilidade, inicio, fim)) {
+        if (disponibilidade.getFim().isBefore(fim)) {
+          fim = disponibilidade.getFim();
+        }
+
+        if (disponibilidade.getInicio().isAfter(inicio)) {
+          inicio = disponibilidade.getInicio();
+        }
+
+        if (listaParticipantes.size() - 1 != index) {
           defineInterseccoes(index + 1, inicio, fim);
         } else {
           listaInterseccoes.add(new Disponibilidade(inicio, fim));
         }
       }
+
       inicio = inicioPadrao;
       fim = fimPadrao;
-    }
-  }
-
-  public void mostraSobreposicao() {
-    //Exibe os horários disponíveis inseridos pelos participantes
-    for (Participante participante : participantes) {
-      ArrayList<Disponibilidade> listaDisponibilidade = participante.getDisponibilidade();
-      System.out.println("Participante: " + participante.getEmail());
-      if (listaDisponibilidade != null) {
-        for (Disponibilidade disponibilidade : listaDisponibilidade) {
-          System.out.println(
-            "De " +
-            disponibilidade.getInicio().format(formatter) +
-            " até " +
-            disponibilidade.getFim().format(formatter)
-          );
-        }
-      }
-      System.out.println("");
-    }
-
-    LocalDateTime InicioDisponibilidade = inicioIntervalo.atStartOfDay();
-    LocalDateTime FimDisponibilidade = finalIntervalo.atTime(23, 59, 59);
-
-    defineInterseccoes(0, InicioDisponibilidade, FimDisponibilidade);
-
-    if (listaInterseccoes != null) {
-      System.out.println("Lista de horários disponíveis para todos: ");
-      for (Disponibilidade interseccao : listaInterseccoes) {
-        System.out.println("De " + interseccao.getInicio().format(formatter) + " ate " + interseccao.getFim().format(formatter));
-      }
-    } else {
-      System.out.println("Não há intersecções de horários");
     }
   }
 }

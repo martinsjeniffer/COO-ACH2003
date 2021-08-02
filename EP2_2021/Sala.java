@@ -1,11 +1,10 @@
-//completa
 public class Sala {
   private int capacidade;
   private String nome;
   private String local;
   private String observacoes;
 
-  public Sala(String nome, int capacidade, String observacoes){
+  public Sala(String nome, int capacidade, String observacoes) {
     this.nome = nome;
     this.capacidade = capacidade;
     this.observacoes = observacoes;
