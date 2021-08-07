@@ -6,6 +6,8 @@ Essa disciplina contou com dois exercícios programa, um implementando o jogo Po
 
 ## Pong!
 
+![img](https://github.com/martinsjeniffer/COO-ACH2003/blob/master/EP1_2021/printPong.png)
+
 Foram implementadas as seguintes classes:
 
 - [Ball](https://github.com/martinsjeniffer/COO-ACH2003/blob/master/EP1_2021/src/Ball.java)
