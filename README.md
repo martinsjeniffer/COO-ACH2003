@@ -2,7 +2,7 @@
 
 Repositório contendo os códigos da disciplina Computação Orientada a Objetos, ministrado pelo professor Flavio Luiz Coutinho, na Escola de Artes, Ciências e Humanidades (EACH) da Universidade de São Paulo.
 
-Essa disciplina contou com dois exercícios programa, um implementando o jogo [Pong!](https://github.com/martinsjeniffer/COO-ACH2003#pong) e outro com um gerenciador de salas de reunião.
+Essa disciplina contou com dois exercícios programa, um implementando o jogo [Pong!](https://github.com/martinsjeniffer/COO-ACH2003#pong) e outro com um [gerenciador de salas de reunião](https://github.com/martinsjeniffer/COO-ACH2003#gerenciador-de-salas-para-o-marcador-de-reuni%C3%B5es).
 
 ## Pong!
 
