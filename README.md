@@ -2,7 +2,7 @@
 
 Repositório contendo os códigos da disciplina Computação Orientada a Objetos, ministrado pelo professor Flavio Luiz Coutinho, na Escola de Artes, Ciências e Humanidades (EACH) da Universidade de São Paulo.
 
-Essa disciplina contou com dois exercícios programa, um implementando o jogo Pong! e outro com um gerenciador de salas de reunião.
+Essa disciplina contou com dois exercícios programa, um implementando o jogo [Pong!](https://github.com/martinsjeniffer/COO-ACH2003#pong) e outro com um gerenciador de salas de reunião.
 
 ## Pong!
 
@@ -14,7 +14,7 @@ Foram implementadas as seguintes classes:
 - [Player](https://github.com/martinsjeniffer/COO-ACH2003/blob/master/EP1_2021/src/Ball.java)
 - [Score](https://github.com/martinsjeniffer/COO-ACH2003/blob/master/EP1_2021/src/Score.java)
 
-## Requisitos
+### Requisitos
 
 - `java -version`:
     ```bash
@@ -50,3 +50,37 @@ Foram implementadas as seguintes classes:
   ```bash
     make
   ```
+  
+  
+ ## Gerenciador de Salas para o Marcador de Reuniões
+ 
+ [Link do relatório contendo mais detalhes da implementação](https://github.com/martinsjeniffer/COO-ACH2003/blob/master/EP2_2021/relatorio.md).
+ 
+Um dos participantes, responsável pela organização dareunião, indica em qual período ele gostaria de marcar a reunião (por exemplo, entre10 e 20 de abril);
+ele determina também a lista de participantes identificados pelosseus endereços eletrônicos.
+A seguir, cada um dos participantes indica os horáriosde disponibilidade dentro do período determinado pelo organizador.
+O organizadorentão visualiza a sobreposição dos horários de todos os participantes e escolhe umhorário para a reun
+ 
+ ### Requisitos
+ 
+ - `java -version`:
+    ```bash
+        openjdk version "11.0.11" 2021-04-20
+        OpenJDK Runtime Environment (build 11.0.11+9-post-Debian-1)
+        OpenJDK 64-Bit Server VM (build 11.0.11+9-post-Debian-1,mixedmode, sharing)
+    ```
+    
+ ### Funcionamento 
+ 
+- Para compilar:
+    ```bash
+        make
+    ```
+
+- Para executar:
+    ```bash
+        java <arquivo_main_contendo_implementacao>
+    ```
+  
+ ### Diagrama UML
+ ![img](https://github.com/martinsjeniffer/COO-ACH2003/blob/master/EP2_2021/diagrama_UML.png)
